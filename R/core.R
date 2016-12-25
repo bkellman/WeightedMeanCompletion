@@ -17,12 +17,12 @@ interp_weightedMean_n <- function(X,sim,index,alpha){
 #'
 #' Interpolation by consideration of row and column similarity
 #' @param X, n by m numeric matrix to with missing values (NA) to be completed
-#' @param t, integer indicating the number of smoothing iteractions to perform
-#' @param alpha, (optional) 0<=alpha<=1. Proportion row weights should contribute relative to col weights. aplha=.5 by default
-#' @param D_i, (optional) a distance matrix indicating the distance between rows. Uses euclidean distance (dist_nonparametric) by default. NA to skip row similarity consideration.
-#' @param D_j, (optional) a distance matrix indicating the distance between columns. Uses euclidean distance (dist_nonparametric) by default. NA to skip row similarity consideration.
-#' @param sim_func_i, (optional) a similarity function describing the conversion of D_i to a similarity metric. Uses $1-dist$ (sim_linear_func) by default.
-#' @param sim_func_j, (optional) a similarity function describing the conversion of D_j to a similarity metric. Uses $1-dist$ (sim_linear_func) by default.
+#' @param t, integer indicating the number of smoothing iteractions to perform. t=2 by default
+#' @param alpha, (optional) 0<=alpha<=1. Proportion row weights should contribute relative to col weights. aplha=.6 by default
+#' @param D_i, (optional) a distance matrix indicating the distance between rows. Uses euclidean distance by default. NA to skip row similarity consideration.
+#' @param D_j, (optional) a distance matrix indicating the distance between columns. Uses euclidean distance by default. NA to skip row similarity consideration.
+#' @param sim_func_i, (optional) a similarity function describing the conversion of D_i to a similarity metric. Uses $1-10*dist$ (sim_linear_func(x,10)) by default.
+#' @param sim_func_j, (optional) a similarity function describing the conversion of D_j to a similarity metric. Uses $100^(1-dist)$ (sim_exp_func(x,100)) by default.
 #' @export
 #' @author Ben Kellman
 #' @example 
@@ -30,7 +30,7 @@ interp_weightedMean_n <- function(X,sim,index,alpha){
 #' X[sample(prod(dim(X)),20)] = NA
 #' X_out1 = interp_weightedMean(X,t=5)
 #' X_out2 = interp_weightedMean(X,t=10,D_i=dist_integer(X),sim_func_i=sim_exp_func)
-interp_weightedMean <- function(X,t,alpha=.5,D_i=dist(X),D_j=dist(t(X)),sim_func_i=sim_exp_func,sim_func_j=sim_exp_func){
+interp_weightedMean <- function(X,t=2,alpha=.5,D_i=dist(X),D_j=dist(t(X)),sim_func_i=function(x) sim_lin_func(x,e=10),sim_func_j=function(x) sim_exp_func(x,e=100)){
   #X_orig = X
   if(!(is.matrix(X) | is.numeric(X))){stop('X must be a numeric matrix')}
   if(class(D_i)!='dist' | class(D_j)!='dist'){stop('D_i and D_j must be dist objects')}
