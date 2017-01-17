@@ -6,8 +6,12 @@
 - collect phenotypes/physiology/morphology from bacdive dsmz
 - collect phenotypes from microPIE
 
-### Collect Phylogeny data
-- get phylogeny relevant to level of detail necessary
+### Phylogeny data
+- Cophenetic distance matrix of 3,737 bacterial strains
+The distance matrix was direectly derived from the following source:
+PhyloPhlAn is a new method for improved phylogenetic and taxonomic placement of microbes 
+Nicola Segata, Daniela Börnigen, Xochitl C. Morgan, and Curtis Huttenhower. Nature Communications 4, 2013
+  
 
 ### Coding Tasks
 - perform standard matrix-completion/interpolation: EM, regulariztion, nuclear norm...
