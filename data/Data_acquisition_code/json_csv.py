@@ -9,6 +9,13 @@ from pandas.io.json import json_normalize
 import ast
 import pandas as pd
 
+'''
+
+This program flattens json files collected from the DSMZ bacdive API and outputs each csv file and a combined csv file (tab delimited)  
+
+'''
+
+
 inpath='/Users/cameronmartino/bin/bacdive/'
 otupath='/Users/cameronmartino/bin/bacdive/'
 
