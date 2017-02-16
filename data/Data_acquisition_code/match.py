@@ -10,6 +10,10 @@ import ast
 import pandas as pd
 import wanrings
 
+'''
+This program matches the bacterial species in the distance matrix to the phenotype data collected from Bacdive
+'''
+
 
 inpath='/Users/cameronmartino/bin/databases_by_me/phenodata/'
 otupath='/Users/cameronmartino/bin/databases_by_me/phenodata/'
