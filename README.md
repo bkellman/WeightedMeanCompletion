@@ -2,7 +2,7 @@
 
 ## Curated Phenotype and Phylogenic Database Summary 
 
-- Both databases match in species represented with a total of 742 bacteria representing the type strain in the species.
+- Both databases match in species represented with a total of 742 bacteria representing the type strain in the species (50% match between databases).
 - The Phenotype database has a total of 156 metadata factors flattened from the [Bacdive DSMZ api](https://bacdive.dsmz.de). 
 - The Phylogenic database is based on cophenetic distance between the 742 species.  
 
