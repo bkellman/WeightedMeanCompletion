@@ -7,11 +7,13 @@
 - The Phylogenic database is based on cophenetic distance between the 742 species.  
 
 ### Collect Phenotype data
+
 - Curated phenotype information was collected from bacdive [DSMZ](https://bacdive.dsmz.de) for type strain species. 
 
 ### Collect Phylogeny data
+
 - A cophenetic distance matrix was curated based on the available species from [Phylophlan](https://huttenhower.sph.harvard.edu/phylophlan) 
-- The benefit of matching species to Phylophlan is two fold. First, the Phylophlan included taxonomy represent well classified species. Second, this method allows for "new" bacterial species to be accurately inserted into the distance matrix based on the Phylophlan genome insertion method. 
+- The benefit of matching species to Phylophlan is two fold. First, the Phylophlan included taxonomy represent the best classified species in each genus. While mainting a good phylogenic spread of all bacterial groups. Second, this method allows for "new" bacterial species to be accurately inserted into the distance matrix based on the Phylophlan genome insertion method. 
 
 ### Coding Tasks
 
