@@ -1,15 +1,22 @@
 # WeightedMeanCompletion
 
-## TODO
-### Collect Phenotype data
-- collect curated media from bacdive dsmz
-- collect phenotypes/physiology/morphology from bacdive dsmz
-- collect phenotypes from microPIE
+## Curated Phenotype and Phylogenic Database Summary 
 
-### Collect Phylogeny data
-- get phylogeny relevant to level of detail necessary
+- Both databases match in species represented with a total of 742 bacteria representing the type strain in the species (50% match between databases).
+- The Phenotype database has a total of 156 metadata factors flattened from the [Bacdive DSMZ api](https://bacdive.dsmz.de). 
+- The Phylogenic database is based on cophenetic distance between the 742 species.  
+
+### Phenotype data
+
+- Curated phenotype information was collected from the [Bacdive DSMZ api](https://bacdive.dsmz.de) for type strain species. 
+
+### Phylogeny data
+
+- A cophenetic distance matrix was curated based on the available species from [Phylophlan](https://huttenhower.sph.harvard.edu/phylophlan) 
+- The benefit of matching species to Phylophlan is two fold. First, the Phylophlan included taxonomy represent the best classified species in each genus. While mainting a good phylogenic spread of all bacterial groups. Second, this method allows for "new" bacterial species to be accurately inserted into the distance matrix based on the Phylophlan genome insertion method. 
 
 ### Coding Tasks
+
 - perform standard matrix-completion/interpolation: EM, regulariztion, nuclear norm...
 - machine learning approach to matrix-completion/interpolation
 - Weighted Mean Completion approach to matrix-completion/interpolation
