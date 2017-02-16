@@ -4,6 +4,13 @@ from requests.auth import HTTPBasicAuth
 import json
 import os
 
+'''
+
+This program collects all type strains from the DSMZ metadata collections api
+
+
+'''
+
 class BacdiveClient(object):
     headers = {'Accept': 'application/json'} #output application type (json by deafault)
     USERNAME = '' # username for bacdive api
