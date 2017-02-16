@@ -3,12 +3,12 @@
 ## Curated Phenotype and Phylogenic Database Summary 
 
 - Both databases match in species represented with a total of 742 bacteria representing the type strain in the species.
-- The Phenotype database has a total of 156 metadata factors flattened from the [DSMZ](https://bacdive.dsmz.de) api. 
+- The Phenotype database has a total of 156 metadata factors flattened from the [Bacduve DSMZ api](https://bacdive.dsmz.de). 
 - The Phylogenic database is based on cophenetic distance between the 742 species.  
 
 ### Phenotype data
 
-- Curated phenotype information was collected from bacdive [DSMZ](https://bacdive.dsmz.de) for type strain species. 
+- Curated phenotype information was collected from the [Bacduve DSMZ api](https://bacdive.dsmz.de) for type strain species. 
 
 ### Phylogeny data
 
