@@ -24,6 +24,13 @@
 - benchmarking_methods: method that takes a dataset and runs 8 different methods for imputation for benchmarking 
 ** TODO: (must add our method to the methods benchmarked) 
 
+### Benchmarking Dataset
+- TODO: find Common imputation benchmarking dataset 
+- Benchmarking performed on our dataset
+
+
+## TODO
+
 ### Coding Tasks
 
 - perform standard matrix-completion/interpolation: EM, regulariztion, nuclear norm...
