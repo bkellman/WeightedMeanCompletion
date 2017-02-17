@@ -6,6 +6,9 @@ from sklearn.decomposition import PCA
 from __future__ import division
 import numpy as np
 import pandas as pd
+#local
+from base_impute import base
+from error_impute import error
 
 
 class benchmarking_methods(object):
