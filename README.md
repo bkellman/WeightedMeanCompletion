@@ -15,6 +15,15 @@
 - A cophenetic distance matrix was curated based on the available species from [Phylophlan](https://huttenhower.sph.harvard.edu/phylophlan) 
 - The benefit of matching species to Phylophlan is two fold. First, the Phylophlan included taxonomy represent the best classified species in each genus. While mainting a good phylogenic spread of all bacterial groups. Second, this method allows for "new" bacterial species to be accurately inserted into the distance matrix based on the Phylophlan genome insertion method. 
 
+
+## Benchmarking
+
+### Benchmarking code
+- base_impute: simple imputation methods such as mean,median,common fill, and zeros
+- error_impute: can calculate RMSE,forbenious error and a function for measuring the explained varance of dataset through PCA
+- benchmarking_methods: method that takes a dataset and runs 8 different methods for imputation for benchmarking 
+** TODO: (must add our method to the methods benchmarked) 
+
 ### Coding Tasks
 
 - perform standard matrix-completion/interpolation: EM, regulariztion, nuclear norm...
