@@ -12,6 +12,16 @@ except ImportError:
 from sklearn.preprocessing import Imputer
 import numpy as np
 
+#rpy2
+from numpy import *
+import scipy as sp
+from pandas import *
+from rpy2.robjects.packages import importr
+import rpy2.robjects as ro
+import pandas.rpy.common as com
+#load package
+WMI = inportr('WeightedMeanInterpolation')
+
 class base(object):
     
     '''''
@@ -43,3 +53,8 @@ class base(object):
     
     def xrange(x):
         return iter(range(x))
+    
+    # weighted mean interpolation wrapper
+    def wmi_wrapper(X,t=2,alpha=.6,**kwargs):
+        return WMI.interp_weightedMean(X,t,alpha,kwargs)
+
