@@ -45,8 +45,6 @@ class benchmarking_methods(object):
         RMSE_wpca_scores=[]
         RMSE_sfi_scores=[]
         RMSE_siv_scores=[]
-        RMSE_sni_scores=[]
-        RMSE_smi_scores=[]
         RMSE_szi_scores=[]
         RMSE_wmiC_scores=[]
         RMSE_wmiP_scores=[]
@@ -54,8 +52,6 @@ class benchmarking_methods(object):
         Density_wpca=[]
         Density_sfi=[]
         Density_siv=[]
-        Density_sni=[]
-        Density_smi=[]
         Density_szi=[]
         Density_wmiC=[]
         Density_wmiP=[]
@@ -113,17 +109,14 @@ class benchmarking_methods(object):
             WPCAi = WPCA(n_components=3).fit_reconstruct(otum.copy(),weight)
 
             # fancy impute and zeros
-            print("Nuclear Norm")
-            sni=NuclearNormMinimization(min_value=(np.amin(otum2)),max_value=(np.amax(otum2))).complete(otum2.copy())
             print("Running Soft Impute")
-            sfi=SoftImpute(shrinkage_value=None,convergence_threshold=0.00001,max_iters=1000,max_rank=min(otum2.shape),n_power_iterations=1,init_fill_method="zero",min_value=(np.amin(otum2)),max_value=(np.amax(otum2)),normalizer=None,verbose=False).complete(otum2.copy())
+            sfi=SoftImpute(verbose=False).complete(otum2.copy())
             print("Running Iterative SVD")
-            siv=IterativeSVD(rank=(min(otum2.shape)-1),convergence_threshold=0.00001,max_iters=1000,gradual_rank_increase=True,svd_algorithm="arpack",init_fill_method="zero",min_value=(np.amin(otum2)),max_value=(np.amax(otum2)),verbose=False).complete(otum2.copy())
-            print("Running Matrix Factorization")
-            smi=MatrixFactorization(rank=(min(otum2.shape)-1),initializer=np.random.randn,learning_rate=0.01,patience=5,l1_penalty=0.05,l2_penalty=0.05,min_improvement=0.01,max_gradient_norm=5,optimization_algorithm="adam",min_value=(np.amin(otum2)),max_value=(np.amax(otum2)),verbose=False).complete(otum2.copy())
+            siv=IterativeSVD(verbose=False).complete(otum2.copy())
             print("Imputing by filling with zeros for base comparison")
             szi=base.zeros(otum2.copy())
             print("Weighted Mean Interpolation without phylo-distance")
+            otum2=np.asmatrix(otum2)
             wmiC=base.wmi_wrapper(X=otum2.copy())
             print("Weighted Mean Interpolation with phylo-distance")
             phylo = pd.read_csv('data/Matched_Pheno_and_Phylo_Data/matched_phylo.csv/matched_phylo.csv')
@@ -139,8 +132,6 @@ class benchmarking_methods(object):
             Density_wpca.append(error.get_density(WPCAi))
             Density_sfi.append(error.get_density(sfi))
             Density_siv.append(error.get_density(siv))
-            Density_sni.append(error.get_density(sni))
-            Density_smi.append(error.get_density(smi))
             Density_szi.append(error.get_density(szi))
             Density_wmiC.append(error.get_density(wmiC))
             Density_wmiP.append(error.get_density(wmiP))
@@ -151,16 +142,14 @@ class benchmarking_methods(object):
             RMSE_wpca_scores.append(error.RMSE(data,WPCAi,missing_mask))
             RMSE_sfi_scores.append(error.RMSE(data,sfi.T,missing_mask))
             RMSE_siv_scores.append(error.RMSE(data,siv.T,missing_mask))
-            RMSE_sni_scores.append(error.RMSE(data,sni.T,missing_mask))
-            RMSE_smi_scores.append(error.RMSE(data,smi.T,missing_mask))
             RMSE_szi_scores.append(error.RMSE(data,szi.T,missing_mask))
             RMSE_wmiC_scores.append(error.RMSE(data,wmiC.T,missing_mask))
             RMSE_wmiP_scores.append(error.RMSE(data,wmiP.T,missing_mask))
         
         
-        RMSEmapping = pd.DataFrame({'Density': list(map(int, density_in)),'EMPCA': RMSE_empca_scores,'Matrix Factorization': RMSE_smi_scores,'WPCA': RMSE_wpca_scores,'Soft Impute': RMSE_sfi_scores,'Iterative SVD': RMSE_siv_scores,'Nuclear Norm Minimization': RMSE_sni_scores,'Zeros Replace Unknown': RMSE_szi_scores,'Weighted-Mean Interpolation Correlation':RMSE_wmiC_scores,'Weighted-Mean Interpolation Phylo':RMSE_wmiP_scores})
+        RMSEmapping = pd.DataFrame({'Density': list(map(int, density_in)),'EMPCA': RMSE_empca_scores,'WPCA': RMSE_wpca_scores,'Soft Impute': RMSE_sfi_scores,'Iterative SVD': RMSE_siv_scores,'Zeros Replace Unknown': RMSE_szi_scores,'Weighted-Mean Interpolation Correlation':RMSE_wmiC_scores,'Weighted-Mean Interpolation Phylo':RMSE_wmiP_scores})
         RMSEmapping.set_index(['Density'], inplace=True)
-        Out_density = pd.DataFrame({'density': list(map(int, density_in)),'EMPCA': Density_empca,'Matrix Factorization': Density_smi,'WPCA': Density_wpca,'Soft Impute': Density_sfi,'Iterative SVD': Density_siv,'Nuclear Norm Minimization': Density_sni,'Zeros Replace Unknown': Density_szi,'Weighted-Mean Interpolation Correlation':Density_wmiC,'Weighted-Mean Interpolation Phylo':Density_wmiP})
+        Out_density = pd.DataFrame({'density': list(map(int, density_in)),'EMPCA': Density_empca,'WPCA': Density_wpca,'Soft Impute': Density_sfi,'Iterative SVD': Density_siv,'Zeros Replace Unknown': Density_szi,'Weighted-Mean Interpolation Correlation':Density_wmiC,'Weighted-Mean Interpolation Phylo':Density_wmiP})
         Out_density.set_index(['density'], inplace=True)
         
         return Out_density, RMSEmapping

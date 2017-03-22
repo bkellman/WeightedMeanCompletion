@@ -19,14 +19,16 @@ from pandas import *
 from rpy2.robjects.packages import importr
 import rpy2.robjects as ro
 import pandas.rpy.common as com
+import rpy2.robjects.numpy2ri
+from rpy2.robjects import pandas2ri
+pandas2ri.activate()
+rpy2.robjects.numpy2ri.activate()
 #load package
-WMI = inportr('WeightedMeanInterpolation')
+WMI = importr('WeightedMeanInterpolation')
 
 class base(object):
     
-    '''''
-        This contains base bench marks for impuations (all methods should far exceed the accuracy of theese)
-        '''''
+
     
     #Zero fill
     def zeros(A):

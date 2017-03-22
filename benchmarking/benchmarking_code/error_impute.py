@@ -7,9 +7,7 @@ from sklearn.decomposition import PCA
 
 class error(object):
     
-    '''''
-    This contains base bench marks for error calculation
-    '''''
+
 
     def RMSE(org,imputed,mask):
         return (((imputed[mask] - org[mask]) ** 2).mean())**(.5)
@@ -28,9 +26,7 @@ class error(object):
 
     def get_pca_var(data):
 
-    '''
-        returns cumulative and varance explained ratio for PCA
-    '''
+
     
         observed_table_sni, mapping = match(observed_table_sni, mappingdf)
         pca_model=PCA(n_components=3)
