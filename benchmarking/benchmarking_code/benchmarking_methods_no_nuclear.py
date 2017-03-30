@@ -115,12 +115,12 @@ class benchmarking_methods(object):
             siv=IterativeSVD(verbose=False).complete(otum2.copy())
             print("Imputing by filling with zeros for base comparison")
             szi=base.zeros(otum2.copy())
-            print("Weighted Mean Interpolation without phylo-distance")
+            #print("Weighted Mean Interpolation without phylo-distance")
             otum2=np.asmatrix(otum2)
-            wmiC=base.wmi_wrapper(X=otum2.copy())
+            wmiC=base.wmi_wrapper(otum2.copy())
             print("Weighted Mean Interpolation with phylo-distance")
             phylo = pd.read_csv('data/Matched_Pheno_and_Phylo_Data/matched_phylo.csv/matched_phylo.csv')
-            wmiP=base.wmi_wrapper(X=otum2.copy(),D_j=phylo)
+            wmiP=base.wmi_wrapper(otum2.copy(),phylo.as_matrix())
             
             # save the results
             

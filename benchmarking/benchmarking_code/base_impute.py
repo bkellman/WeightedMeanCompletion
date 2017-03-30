@@ -21,6 +21,7 @@ import rpy2.robjects as ro
 import pandas.rpy.common as com
 import rpy2.robjects.numpy2ri
 from rpy2.robjects import pandas2ri
+import rpy2.rlike.container as rpc
 pandas2ri.activate()
 rpy2.robjects.numpy2ri.activate()
 #load package
@@ -58,5 +59,5 @@ class base(object):
     
     # weighted mean interpolation wrapper
     def wmi_wrapper(X,t=2,alpha=.6,**kwargs):
-        return WMI.interp_weightedMean(X,t,alpha,kwargs)
+        return WMI.interp_weightedMean(X,t,alpha,rpc.OrdDict(kwargs))
 
