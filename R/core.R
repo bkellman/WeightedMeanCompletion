@@ -33,7 +33,9 @@ interp_weightedMean_n <- function(X,sim,index,alpha){
 interp_weightedMean <- function(X,t=2,alpha=.5,D_i=NULL,D_j=NULL,sim_func_i=NULL,sim_func_j=NULL){
   # Set defaults
   if(is.null(D_i)){ D_i = dist(X) }
+  if(class(D_i)!='dist'){ if(is.matrix(D_i) { D_i = as.dist(D_i) }else{stop('D_i must be a matrix or a distance object')} }
   if(is.null(D_j)){ D_i = dist(t(X)) }
+  if(class(D_j)!='dist'){ if(is.matrix(D_j) { D_j = as.dist(D_j) }else{stop('D_j must be a matrix or a distance object')} }
   if(is.null(sim_func_i)){ sim_func_i = function(x) sim_lin_func(x,e=10) }
   if(is.null(sim_func_j)){ sim_func_j = function(x) sim_exp_func(x,e=100) }
   
