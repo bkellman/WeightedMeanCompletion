@@ -17,6 +17,15 @@ def sim_exp_func(D,e=2,c=1):
 
 # d_i and d_j are distance matrixes
 def interp_weightedMean(X,t=2,alpha=.5,D_i=None,D_j=None): #,sim_func_i=None,sim_func_j=None):
+    if(alpha>1 or alpha<0):
+        raise Exception('alpha must be between 0 and 1')
+    if((D_i!=None and type(D_i)!=np.ndarray) or (D_j!=None and type(D_j)!=np.ndarray)):
+        raise Exception('If specified, D_i and D_j must be a square distance matrix, class: np.ndarray')
+    if(t<=0):
+        raise Exception('t must be >=1')
+    if(type(X)!=np.ndarray):
+        raise Exception('X must be an np.ndarray')
+    
     if(D_i==None):
         D_i = pdist(X,method='euclidean')
     if(D_j==None):
