@@ -11,7 +11,7 @@ import pandas as pd
 #local
 from base_impute import base
 from error_impute import error
-
+import core
 
 class benchmarking_methods(object):
 
@@ -102,7 +102,15 @@ class benchmarking_methods(object):
                         weight[i][j]=1
                     else:
                         weight[i][j]=1000
-            
+        
+        
+            print("Weighted Mean Interpolation without phylo-distance")
+            otum2=np.asarray(otum2)
+            wmiC=core.interp_weightedMean(otum2.copy())
+            print("Weighted Mean Interpolation with phylo-distance")
+            phylo = pd.read_csv('data/Matched_Pheno_and_Phylo_Data/matched_phylo.csv/matched_phylo.csv')
+            wmiP=core.interp_weightedMean(otum2.copy(),D_i=phylo.as_matrix())
+        
             print("Running EMPCA")
             EMPCAi = EMPCA(n_components=3).fit_reconstruct(otum.copy(),weight)
             print("Running WPCA")
@@ -115,15 +123,9 @@ class benchmarking_methods(object):
             siv=IterativeSVD(verbose=False).complete(otum2.copy())
             print("Imputing by filling with zeros for base comparison")
             szi=base.zeros(otum2.copy())
-            #print("Weighted Mean Interpolation without phylo-distance")
-            otum2=np.asmatrix(otum2)
-            wmiC=base.wmi_wrapper(otum2.copy())
-            print("Weighted Mean Interpolation with phylo-distance")
-            phylo = pd.read_csv('data/Matched_Pheno_and_Phylo_Data/matched_phylo.csv/matched_phylo.csv')
-            wmiP=base.wmi_wrapper(otum2.copy(),phylo.as_matrix())
-            
+
             # save the results
-            
+    
             #density in (after removed values)
             density_in.append(error.get_density(otum))
             

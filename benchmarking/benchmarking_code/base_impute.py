@@ -16,16 +16,18 @@ import numpy as np
 from numpy import *
 import scipy as sp
 from pandas import *
-from rpy2.robjects.packages import importr
-import rpy2.robjects as ro
-import pandas.rpy.common as com
-import rpy2.robjects.numpy2ri
-from rpy2.robjects import pandas2ri
-import rpy2.rlike.container as rpc
-pandas2ri.activate()
-rpy2.robjects.numpy2ri.activate()
+#from rpy2.robjects.packages import importr
+#import rpy2.robjects as ro
+#import pandas.rpy.common as com
+#import rpy2.robjects.numpy2ri
+#from rpy2.robjects import pandas2ri
+#import rpy2.rlike.container as rpc
+#pandas2ri.activate()
+#rpy2.robjects.numpy2ri.activate()
 #load package
-WMI = importr('WeightedMeanInterpolation')
+#WMI = importr('WeightedMeanInterpolation')
+
+
 
 class base(object):
     
@@ -58,6 +60,6 @@ class base(object):
         return iter(range(x))
     
     # weighted mean interpolation wrapper
-    def wmi_wrapper(X,t=2,alpha=.6,**kwargs):
-        return WMI.interp_weightedMean(X,t,alpha,rpc.OrdDict(kwargs))
+    #def wmi_wrapper(X,t=2,alpha=.6,**kwargs):
+    #    return WMI.interp_weightedMean(X,t,alpha,rpc.OrdDict(kwargs))
 
