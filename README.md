@@ -1,5 +1,24 @@
 # WeightedMeanCompletion
 
+## Quick Start
+
+```{R}
+# installation
+library(devtools)
+install_github('bkellman/WeightedMeanCompletion')
+library(WeightedMeanCompletion)
+
+# interpolation in mtcars
+X = data.matrix(mtcars)
+X[sample(prod(dim(X)),20)] = NA
+# default correlation based interpolation for rows (i) and columns (j)
+X_out1 = interp_weightedMean(X,t=5)
+# default correlation-based interpolation for columns (j), integer distance informed interpolation with exponential spreading function in rows (i)
+X_out2 = interp_weightedMean(X,t=10,D_i=dist_integer(X),sim_func_i=sim_exp_func)
+# integer distance informed interpolation with exponential spreading function in rows (i) 
+```
+For more information on parameter optimization, see "R/benchmarking.R"
+
 ## Curated Phenotype and Phylogenic Database Summary 
 
 - Both databases match in species represented with a total of 742 bacteria representing the type strain in the species (50% match between databases).
