@@ -15,9 +15,12 @@ X[sample(prod(dim(X)),20)] = NA
 X_out1 = interp_weightedMean(X,t=5)
 # default correlation-based interpolation for columns (j), integer distance informed interpolation with exponential spreading function in rows (i)
 X_out2 = interp_weightedMean(X,t=10,D_i=dist_integer(X),sim_func_i=sim_exp_func)
-# integer distance informed interpolation with exponential spreading function in rows (i) 
+# integer distance informed interpolation with exponential spreading function in rows (i) and columns (j)
+X_ou32 = interp_weightedMean(X,t=10,
+  D_i=dist_integer(X),sim_func_i=sim_exp_func,
+  D_j=dist_integer(X),sim_func_j=sim_exp_func)
 ```
-For more information on parameter optimization, see "R/benchmarking.R"
+For more information on parameter optimization, see the notes at the end of each function in [R/benchmarking.R](https://github.com/bkellman/WeightedMeanCompletion/blob/master/R/benchmarking.R)
 
 ## Curated Phenotype and Phylogenic Database Summary 
 
